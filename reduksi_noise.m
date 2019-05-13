@@ -9,6 +9,10 @@ filename = 'sawah_2015.tif.txt';
 data = single(dlmread(filename));
 data = data(:,2:end);
 cth = data(int32(rand(1,1000)*10000),:);
+%plot(a)
+%% 
+h=fdesign.lowpass('N,Fc',8,4,23);
+designmethods(h)
 smpl = cth(1:10,:)';
 smpl = repmat(smpl,3,1);
 data = repmat(data',3,1);
@@ -17,10 +21,6 @@ data = repmat(data',3,1);
 
 a = double(smpl(:,2:4));
 b = tsmovavg(a,'s',5,1);
-%plot(a)
-%% 
-h=fdesign.lowpass('N,Fc',8,4,23);
-designmethods(h)
 d=design(h);
 %%
 %h=fdesign.lowpass('Fp,Fst,Ap,Ast',4,5,6000,70,23);
